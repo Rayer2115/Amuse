@@ -42,7 +42,7 @@ client.on(`messageCreate`, async (message) => {
         msg.react(`<:moze:1001127928349872190>`)
         msg.react(`<:nie:1001127927188041888>`)
 
-        msg.threads.create({
+        msg.startThread({
             name: 'Komentarze'
         }).then((thread) => {
             thread.members.add(`${message.member.id}`)
