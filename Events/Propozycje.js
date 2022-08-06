@@ -12,7 +12,7 @@ client.on(`messageCreate`, async (message) => {
 
     if(status != true) return
 
-    let channel = await client.db.get(`guilds.${message.guild.id}.propoyzcje.channel`)
+    let channel = await client.db.get(`guilds.${message.guild.id}.propozycje.channel`)
 
     if(message.channel.id != channel) return
 
