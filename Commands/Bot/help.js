@@ -16,11 +16,16 @@ module.exports = {
         ]
         let arrayOfModCommands = [
             "ban",
-            "kick"
+            "kick",
+            'clear',
+            "ankieta",
         ]
         let arrayOfConfCommands = [
             "autorola",
             "ticket",
+            "tickety",
+            "nowosci",
+            "backup"
         ]
         let arrayOfInfoCommands = [
             "help"
