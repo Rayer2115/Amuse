@@ -5,6 +5,8 @@ client.on(`messageCreate`, async (message) => {
 
     if(message.channel.id != `1000393628201529475`) return
 
+    if(author.bot) return
+
     client.guilds.cache.forEach(async g => {
         let status = await client.db.get(`guilds.${g.id}.newsChannelStatus`)
 
