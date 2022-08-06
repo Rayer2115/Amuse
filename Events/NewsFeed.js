@@ -16,8 +16,8 @@ client.on(`messageCreate`, async (message) => {
             
             let channel = g.channels.cache.get(channelId)
 
-            const webhooks = await channel.fetchWebhooks();
-            const webhook = webhooks.find(wh => wh.name === `Rusty Nowości`);
+            let webhooks = await channel.fetchWebhooks();
+            let webhook = webhooks.find(wh => wh.name === `Rusty Nowości`);
 
             if(!webhook){
             webhook = await channel.createWebhook('Rusty Nowości', {

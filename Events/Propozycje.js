@@ -18,8 +18,8 @@ client.on(`messageCreate`, async (message) => {
 
     let channel = message.guild.channels.cache.get(channelID)
 
-    const webhooks = await channel.fetchWebhooks();
-    const webhook = webhooks.find(wh => wh.name === `Rusty Propozycje`);
+    let webhooks = await channel.fetchWebhooks();
+    let webhook = await webhooks.find(wh => wh.name === `Rusty Propozycje`);
 
     if(!webhook){
     webhook = await channel.createWebhook('Rusty Propozycje', {
