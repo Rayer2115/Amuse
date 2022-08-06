@@ -12,9 +12,11 @@ client.on(`messageCreate`, async (message) => {
 
     if(status != true) return
 
-    let channel = await client.db.get(`guilds.${message.guild.id}.propozycje.channel`)
+    let channelID = await client.db.get(`guilds.${message.guild.id}.propozycje.channel`)
 
-    if(message.channel.id != channel) return
+    if(message.channel.id != channelID) return
+
+    let channel = message.guild.channels.cache.get(channelID)
 
     const webhooks = await channel.fetchWebhooks();
     const webhook = webhooks.find(wh => wh.name === `Rusty Propozycje`);
