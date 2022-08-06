@@ -1,7 +1,7 @@
 const client = require(`..`)
 
 client.on("guildCreate", async (guild) => {
-    let logChannel = client.channels.cache.find(c => c.id === `995644639115739186`)
+    let logChannel = client.channels.cache.find(c => c.id === `1005539511222145024`)
 
     let gbanStatus = await client.db.get(`g${guild.id}.gban.reason`)
 
@@ -30,7 +30,7 @@ client.on("guildCreate", async (guild) => {
 })
 
 client.on("guildDelete", async (guild) => {
-    let logChannel = client.channels.cache.find(c => c.id === `995644639115739186`)
+    let logChannel = client.channels.cache.find(c => c.id === `1005539511222145024`)
 
     logChannel.send({
         content: `Bot został wyrzucony/wyszedł z serwera **${guild.name}** \`(${guild.id})\``
