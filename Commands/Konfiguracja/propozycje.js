@@ -92,7 +92,7 @@ module.exports = {
             })
         }
 
-        await client.db.set(`guilds.${interaction.guild.id}.propoyzcje.status`, status === `on` ? true : false)
+        await client.db.set(`guilds.${interaction.guild.id}.propozycje.status`, status === `on` ? true : false)
 
         let embed = new MessageEmbed()
             .setTitle(`Wykonano zmiany!`)
