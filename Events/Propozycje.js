@@ -8,7 +8,7 @@ const {
 client.on(`messageCreate`, async (message) => {
     if (message.author.bot) return
 
-    let status = await client.db.get(`guilds.${message.guild.id}.propoyzcje.status`)
+    let status = await client.db.get(`guilds.${message.guild.id}.propozycje.status`)
 
     if(status != true) return
 
