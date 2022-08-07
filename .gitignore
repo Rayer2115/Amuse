@@ -1,0 +1,9 @@
+
+node_modules/
+Data/
+Data/Config.js
+Data/database.sqlite
+*.sqlite
+package.json
+package-lock.json
+views/
