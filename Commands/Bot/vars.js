@@ -12,7 +12,19 @@ module.exports = {
         let embed = new MessageEmbed()
         .setTitle(`Zmienne`)
         .setColor(client.config.primary)
-        .setDescription(`\`\`\`Narazie brak zmiennych\`\`\``)
+        .addFields(
+            {
+                name: `Powitania i pożegnania`,
+                value: `\`\`\`
+                {user} - Pinguje użytkownika
+                {user.name} - Wyświetlana nazwa użytkownika
+                {user.tag} - Wyświetla nazwę i tag użytkownika (KvbuS#9999)
+                {guild.name} - Wyświetla nazwę serwera
+                {guild.members} - Wyświetla liczbę użytkowników na serwerze
+                \`\`\`
+                `
+            }
+        )
 
         interaction.reply({
             embeds: [embed]
