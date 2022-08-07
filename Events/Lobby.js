@@ -23,12 +23,25 @@ client.on('guildMemberAdd', async (member) => {
 
     let user = client.users.cache.get(member.id)
 
+    let members = await member.guild.members.fetch()
+
+    let bots = 0
+
+    members.forEach(user => {
+        if(user.user.bot){
+            bots++
+        }
+    })
+
+
+
     let messageEdited = message
     .replaceAll(`{user}`, `${member}`)
     .replaceAll(`{user.name}`, `${member.displayName}}`)
     .replaceAll(`{user.tag}`, `${user.tag}`)
     .replaceAll(`{guild.name}`, `${member.guild.name}`)
-    .replaceAll(`{guild.members}`, `${member.guild.memberCount}`)
+    .replaceAll(`{guild.members}`, `${member.guild.memberCount - bots}`)
+    .replaceAll(`{guild.bots}`, `${bots}`)
     .replaceAll(`/n`, `\n`)
 
     let embed = new MessageEmbed()
@@ -59,6 +72,16 @@ client.on('guildMemberRemove', async (member) => {
 
     if(!message) return
 
+    let members = await member.guild.members.fetch()
+
+    let bots = 0
+
+    members.forEach(user => {
+        if(user.user.bot){
+            bots++
+        }
+    })
+
     let user = client.users.cache.get(member.id)
 
     let messageEdited = message
@@ -66,7 +89,8 @@ client.on('guildMemberRemove', async (member) => {
     .replaceAll(`{user.name}`, `${member.displayName}}`)
     .replaceAll(`{user.tag}`, `${user.tag}`)
     .replaceAll(`{guild.name}`, `${member.guild.name}`)
-    .replaceAll(`{guild.members}`, `${member.guild.memberCount}`)
+    .replaceAll(`{guild.members}`, `${member.guild.memberCount - bots}`)
+    .replaceAll(`{guild.bots}`, `${bots}`)
     .replaceAll(`/n`, `\n`)
 
     let embed = new MessageEmbed()

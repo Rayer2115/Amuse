@@ -20,7 +20,8 @@ module.exports = {
 {user.name} - Wyświetlana nazwa użytkownika
 {user.tag} - Wyświetla nazwę i tag użytkownika (KvbuS#9999)
 {guild.name} - Wyświetla nazwę serwera
-{guild.members} - Wyświetla liczbę użytkowników na serwerze
+{guild.members} - Wyświetla liczbę użytkowników na serwerze (bez botów)
+{guild.bots} - Wyświetla liczbę botów na serwerze
                 \`\`\`
                 `
             }
