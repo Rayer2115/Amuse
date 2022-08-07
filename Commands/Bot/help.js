@@ -25,10 +25,12 @@ module.exports = {
             "ticket",
             "tickety",
             "nowosci",
-            "backup"
+            "backup",
+            "lobby"
         ]
         let arrayOfInfoCommands = [
-            "help"
+            "help",
+            "vars"
         ]
 
 
