@@ -7,12 +7,6 @@ client.on("ready", async () => {
         name: `Rusty (0) | Zaprosisz uwu?`,
         type: "WATCHING"
     })
-    setInterval(() => {
-        client.user.setActivity({
-            name: `Rusty (0) | Zaprosisz uwu?`,
-            type: "WATCHING"
-        })
-    }, 300000)
     logger.load("Successfully loaded whole bot")
 
     const rule = new schedule.RecurrenceRule();
@@ -23,4 +17,17 @@ client.on("ready", async () => {
         await client.db.delete(`messagesDay`)
         console.log("Usunieto dzienne wiadomosci!")
     });
+
+    let emojis = {}
+    client.config.dev.forEach(dev => {
+        client.guilds.fetch(dev)
+            .then(guild => {
+                guild.emojis.cache.forEach(e => {
+                    emojis[e.name.replace("icons_", "")] = `<:${e.identifier}>`
+                })
+        })
+    })
+    client.emoji = emojis
+
+    logger.load("Loaded all emojis to cache!")
 });

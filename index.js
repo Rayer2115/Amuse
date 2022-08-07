@@ -9,7 +9,6 @@ client.player = new Player(client);
 
 module.exports = client;
 client.cooldowns = new Collection();
-client.premium = new Collection();
 client.slashCommands = new Collection();
 client.config = require("./Data/Config.js");
 client.db = new QuickDB({filePath: "./Data/database.sqlite"});
@@ -19,7 +18,7 @@ const manager = new dg.GiveawaysManager(client, {
         botsCanWin: false,
         embedColor: client.config.primary,
         embedColorEnd: client.config.primary,
-        reaction: "<:rev_check:988689711235203172>"
+        reaction: "🤙"
     }
 })
 
