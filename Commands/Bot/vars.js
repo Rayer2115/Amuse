@@ -16,11 +16,11 @@ module.exports = {
             {
                 name: `Powitania i pożegnania`,
                 value: `\`\`\`
-                {user} - Pinguje użytkownika
-                {user.name} - Wyświetlana nazwa użytkownika
-                {user.tag} - Wyświetla nazwę i tag użytkownika (KvbuS#9999)
-                {guild.name} - Wyświetla nazwę serwera
-                {guild.members} - Wyświetla liczbę użytkowników na serwerze
+{user} - Pinguje użytkownika
+{user.name} - Wyświetlana nazwa użytkownika
+{user.tag} - Wyświetla nazwę i tag użytkownika (KvbuS#9999)
+{guild.name} - Wyświetla nazwę serwera
+{guild.members} - Wyświetla liczbę użytkowników na serwerze
                 \`\`\`
                 `
             }
