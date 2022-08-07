@@ -4,7 +4,7 @@ const schedule = require('node-schedule');
 
 client.on("ready", async () => {
     client.user.setActivity({
-        name: `Rusty (0) | Zaprosisz uwu?`,
+        name: `Amuse (0) | ${client.guilds.cache.size}`,
         type: "WATCHING"
     })
     logger.load("Successfully loaded whole bot")
