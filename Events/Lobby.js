@@ -44,7 +44,7 @@ client.on('guildMemberAdd', async (member) => {
 
 })
 
-client.on('guildMemberAdd', async (member) => {
+client.on('guildMemberRemove', async (member) => {
     let status = await client.db.get(`guilds.${member.guild.id}.lobby.status`)
 
     if(status != true) return
