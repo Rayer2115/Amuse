@@ -16,12 +16,14 @@ client.on(`messageCreate`, async (message) => {
             
             let channel = g.channels.cache.get(channelId)
 
+
+
             let webhooks = await channel.fetchWebhooks();
-            let webhook = webhooks.find(wh => wh.name === `Rusty Nowości`);
+            let webhook = webhooks.find(wh => wh.name === `Amuse Nowości`);
 
             if(!webhook){
-            webhook = await channel.createWebhook('Rusty Nowości', {
-                    avatar: 'https://i.imgur.com/JATf8sP.png',
+            webhook = await channel.createWebhook('Amuse Nowości', {
+                    avatar: 'https://i.imgur.com/TR61H1f.png',
                 })
             }
 

@@ -19,11 +19,11 @@ client.on(`messageCreate`, async (message) => {
     let channel = message.guild.channels.cache.get(channelID)
 
     let webhooks = await channel.fetchWebhooks();
-    let webhook = await webhooks.find(wh => wh.name === `Rusty Propozycje`);
+    let webhook = await webhooks.find(wh => wh.name === `Amuse Propozycje`);
 
     if(!webhook){
-    webhook = await channel.createWebhook('Rusty Propozycje', {
-             avatar: 'https://i.imgur.com/JATf8sP.png',
+    webhook = await channel.createWebhook('Amuse Propozycje', {
+             avatar: 'https://i.imgur.com/TR61H1f.png',
          })
     }
 
