@@ -5,7 +5,11 @@ const globPromise = promisify(glob);
 module.exports = async (client) => {
 
   const eventFiles = await globPromise(`${process.cwd()}/Events/*.js`);
-  eventFiles.map((value) => require(value));
+  eventFiles.map((value) => {
+    require(value)
+    let replaced = value.replace(`C:/Users/N3gat/Documents/Rusty/Events/`, ``).replace(`.js`, ``)
+    client.logger.info(`Załadowano event ${replaced}`)
+  });
 
   const slashCommands = await globPromise(
     `${process.cwd()}/Commands/*/*.js`
@@ -23,6 +27,7 @@ module.exports = async (client) => {
 
     if (["MESSAGE", "USER"].includes(file.type)) delete file.description;
     arrayOfSlashCommands.push(file);
+    client.logger.info(`Załadowano komendę ${file.name}`)
   });
   client.on("ready", async () => {
       // await client.guilds.cache

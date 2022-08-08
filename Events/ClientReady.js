@@ -7,22 +7,9 @@ client.on("ready", async () => {
         name: `Amuse (0) | ${client.guilds.cache.size}`,
         type: "WATCHING"
     })
-    logger.log("Successfully loaded whole bot")
+    client.logger.log(`Zalogowano jako ${client.user.tag}`)
 
     const rule = new schedule.RecurrenceRule();
     rule.hour = 1;
     rule.tz = 'Europe/Warsaw';
-
-    let emojis = {}
-    client.config.dev.forEach(dev => {
-        client.guilds.fetch(dev)
-            .then(guild => {
-                guild.emojis.cache.forEach(e => {
-                    emojis[e.name.replace("icons_", "")] = `<:${e.identifier}>`
-                })
-        })
-    })
-    client.emoji = emojis
-
-    logger.log("Loaded all emojis to cache!")
 });
