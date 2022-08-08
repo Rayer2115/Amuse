@@ -1,4 +1,5 @@
-console.clear()
+const logger = require(`aminologer`)
+logger.clear()
 
 const { Client, Collection } = require("discord.js");
 const client = new Client({ intents: 32767, allowedMentions: { repliedUser: false } });
@@ -12,6 +13,8 @@ client.cooldowns = new Collection();
 client.slashCommands = new Collection();
 client.config = require("./Data/Config.js");
 client.db = new QuickDB({filePath: "./Data/database.sqlite"});
+
+client.logger = logger
 const manager = new dg.GiveawaysManager(client, {
     storage: './giveaways.json',
     default: {
@@ -26,8 +29,6 @@ client.giveawaysManager = manager
 
 require("./Handler")(client);
 client.login(client.config.secret);
-
-const logger = require(`./Tools/Logger`)
 
 process.on("unhandledRejection", (reason, p) => {
     logger.error(reason, p)

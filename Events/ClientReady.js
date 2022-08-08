@@ -1,5 +1,5 @@
 const client = require("../index");
-const logger = require('../Tools/Logger')
+const logger = require('aminologer')
 const schedule = require('node-schedule');
 
 client.on("ready", async () => {
@@ -7,16 +7,11 @@ client.on("ready", async () => {
         name: `Amuse (0) | ${client.guilds.cache.size}`,
         type: "WATCHING"
     })
-    logger.load("Successfully loaded whole bot")
+    logger.log("Successfully loaded whole bot")
 
     const rule = new schedule.RecurrenceRule();
     rule.hour = 1;
     rule.tz = 'Europe/Warsaw';
-
-    const job = schedule.scheduleJob(rule, async function(){
-        await client.db.delete(`messagesDay`)
-        console.log("Usunieto dzienne wiadomosci!")
-    });
 
     let emojis = {}
     client.config.dev.forEach(dev => {
@@ -29,5 +24,5 @@ client.on("ready", async () => {
     })
     client.emoji = emojis
 
-    logger.load("Loaded all emojis to cache!")
+    logger.log("Loaded all emojis to cache!")
 });
