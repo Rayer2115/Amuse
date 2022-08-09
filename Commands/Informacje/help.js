@@ -8,10 +8,6 @@ module.exports = {
      * @param {Discord.Interaction} interaction
      */
     run: async (client, interaction, args) => {
-        const helpEmoji = {
-            informacje: client.emoji.question,
-            konfiguracja: client.emoji.settings
-        }
         const directories = [
             ...new Set(client.slashCommands.map((cmd) => cmd.directory)),
         ];
@@ -41,10 +37,11 @@ module.exports = {
             iconURL: client.user.avatarURL()
          })
          .setDescription(
-            `${client.emoji.stagerequesttospeak} Witaj ${interaction.member}, jestem nowym wielofunkcyjnym botem na discorda!\n${client.emoji.slashcmd} Jestem **${client.user.username}** i obsługuję slash komendy.`
+            `Witaj **${interaction.user.username}**, nazywam się \` ${client.user.username} \` i pomogę ci.\nWybierz kategorię z listy!`
          )
          .setColor(client.config.primary)
-         .setTimestamp();
+         .setTimestamp()
+         .setThumbnail(client.user.avatarURL())
 
       const components = (state) => [
          new Discord.MessageActionRow().addComponents(
@@ -57,7 +54,6 @@ module.exports = {
                      return {
                         label: `${cmd.directory}`,
                         value: `${cmd.directory.toLowerCase()}`,
-                        emoji: `${helpEmoji[cmd.directory.toLowerCase()] || client.emoji.folder}`,
                         description:
                            `Kliknij po więcej informacji`,
                      };
@@ -88,7 +84,7 @@ module.exports = {
          const embed2 = new Discord.MessageEmbed()
             .setAuthor({ name: `${directory.charAt(0).toUpperCase()}${directory.slice(1).toLowerCase()}`, iconURL: client.user.avatarURL()})
             .setDescription(
-               "" + category.commands.map((cmd) => `\`${cmd.name}\` ${cmd.description}`).join("\n ")
+               "" + category.commands.map((cmd) => `\`/${cmd.name}\` - ${cmd.description}`).join("\n ")
             )
             .setColor(client.config.primary);
 

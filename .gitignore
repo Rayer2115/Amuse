@@ -7,3 +7,7 @@ Data/database.sqlite
 package.json
 package-lock.json
 views/
+logs/
+giveaways.json
+Data/database.sqlite
+*.sqlite

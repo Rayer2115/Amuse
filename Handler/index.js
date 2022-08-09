@@ -7,7 +7,7 @@ module.exports = async (client) => {
   const eventFiles = await globPromise(`${process.cwd()}/Events/*.js`);
   eventFiles.map((value) => {
     require(value)
-    let replaced = value.replace(`C:/Users/N3gat/Documents/Rusty/Events/`, ``).replace(`.js`, ``)
+    let replaced = value.replace(` C:/Users/N3gat/Documents/Amuse/Events/`, ``).replace(`.js`, ``)
     client.logger.info(`Załadowano event ${replaced}`)
   });
 
