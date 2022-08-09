@@ -4,9 +4,14 @@ const schedule = require('node-schedule');
 
 client.on("ready", async () => {
     let guilds = await client.guilds.fetch()
+    let users = 0
+    guilds.forEach(async guild => {
+        let server = await client.guilds.fetch(guild.id)
+        users = users + server.memberCount
+    })
     let status = [
         `${guilds.size} serwery`,
-        `${client.users.cache.size} użytkowników`,
+        `${users} użytkowników`,
         `${client.channels.cache.filter(c => c.type === `GUILD_TEXT` || c.type === `GUILD_VOICE`).size} kanały`
     ]
 
@@ -17,8 +22,24 @@ client.on("ready", async () => {
         type: "WATCHING"
     })
 
-    setInterval(() => {
-        item = status[number]
+    setInterval(async () => {
+        let guilds = await client.guilds.fetch()
+        
+        let users2 = 0
+        
+        await guilds.forEach(async guild => {
+        server = await client.guilds.fetch(guild.id)
+        users2 = users2 + server.memberCount
+        })
+
+        let status2 = [
+            `${guilds.size} serwery`,
+            `${users2} użytkowników`,
+            `${client.channels.cache.filter(c => c.type === `GUILD_TEXT` || c.type === `GUILD_VOICE`).size} kanały`
+        ]
+
+
+        item = status2[number]
         client.user.setActivity({
             name: `Amuse (0) | ${item}`,
             type: "WATCHING"
