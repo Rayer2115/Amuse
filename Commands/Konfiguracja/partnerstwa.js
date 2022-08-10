@@ -1,7 +1,7 @@
 const Discord = require('discord.js')
 module.exports = {
     name: "partnerstwa",
-    description: "Zarządzaj modułem propoyzcji",
+    description: "Zarządzaj modułem partnerstw",
     cooldowns: 7000,
     type: "CHAT_INPUT",
     perms: ["ADMINISTRATOR"],
@@ -33,6 +33,19 @@ module.exports = {
                             name: `rola`,
                             description: `Umiesz czytać?`,
                             type: `ROLE`,
+                            required: true
+                        }
+                    ]
+                },
+                {
+                    name: `logi`,
+                    description: `Kanał na którym wszystko będzie logowane`,
+                    type: `SUB_COMMAND`,
+                    options: [
+                        {
+                            name: `kanal`,
+                            description: `Umiesz czytać?`,
+                            type: `CHANNEL`,
                             required: true
                         }
                     ]
@@ -117,6 +130,12 @@ module.exports = {
     run: async (client, interaction, args) => {
         let grp = interaction.options.getSubcommandGroup()
 
+        let logsChannel = await client.db.get(`guilds.${interaction.guild.id}.partnerstwa.logs`)
+
+        if(logsChannel){
+            logsChannel = interaction.guild.channels.cache.get(logsChannel)
+        }
+
         if(grp === `konfiguracja`){
             let sbc = interaction.options.getSubcommand()
 
@@ -141,6 +160,11 @@ module.exports = {
                 .setColor(client.config.primary)
                 .setDescription(`${interaction.member} zmienił ustawienia partnerstw!`)
                 .addField(`Nowy kanał`, `${channel}`)
+
+                logsChannel.send({
+                    content: `(LOG)`,
+                    embeds: [embed]
+                })
 
                 return interaction.reply({
                     embeds: [embed]
@@ -167,6 +191,42 @@ module.exports = {
                 .setColor(client.config.primary)
                 .setDescription(`${interaction.member} zmienił ustawienia partnerstw!`)
                 .addField(`Nowa rola`, `${rola}`)
+
+                logsChannel.send({
+                    content: `(LOG)`,
+                    embeds: [embed]
+                })
+
+                return interaction.reply({
+                    embeds: [embed]
+                })
+            }
+            if(sbc === `logi`){
+                let channel = interaction.options.getChannel(`kanal`)
+
+                if(!channel.isText()){
+                    let errEmbed = new Discord.MessageEmbed()
+                    .setTitle(`Wystąpił bład...`)
+                    .setColor(client.config.primary)
+                    .setDescription(`Kanał logów musi być kanałem tekstowym!`)
+
+                    return interaction.reply({
+                        embeds: [errEmbed]
+                    })
+                }
+
+                await client.db.set(`guilds.${interaction.guild.id}.partnerstwa.logs`, channel.id)
+
+                let embed = new Discord.MessageEmbed()
+                .setTitle(`Wykonano zmiany!`)
+                .setColor(client.config.primary)
+                .setDescription(`${interaction.member} zmienił ustawienia partnerstw!`)
+                .addField(`Nowy kanał logów`, `${channel}`)
+
+                logsChannel.send({
+                    content: `(LOG)`,
+                    embeds: [embed]
+                })
 
                 return interaction.reply({
                     embeds: [embed]
@@ -205,6 +265,11 @@ module.exports = {
                 .setDescription(`${interaction.member} zmienił status partnerstw!`)
                 .addField(`Status`, `\`${status === `on` ? `Włączone` : `Wyłączone`}\``)
 
+                logsChannel.send({
+                    content: `(LOG)`,
+                    embeds: [embed]
+                })
+
                 return interaction.reply({
                     embeds: [embed]
                 })
@@ -235,6 +300,11 @@ module.exports = {
                 .setTitle(`Dodano!`)
                 .setColor(client.config.primary)
                 .setDescription(`${interaction.member} dodał \` ${number} \` partnerstw dla ${member}`)
+
+                logsChannel.send({
+                    content: `(LOG)`,
+                    embeds: [embed]
+                })
 
                 return interaction.reply({
                     embeds: [embed]
@@ -276,6 +346,11 @@ module.exports = {
                 .setColor(client.config.primary)
                 .setDescription(`${interaction.member} odjął \` ${number} \` partnerstw dla ${member}`)
 
+                logsChannel.send({
+                    content: `(LOG)`,
+                    embeds: [embed]
+                })
+
                 return interaction.reply({
                     embeds: [embed]
                 })
@@ -292,6 +367,11 @@ module.exports = {
                 .setTitle(`Zresetowano!`)
                 .setColor(client.config.primary)
                 .setDescription(`${interaction.member} zresetował partnerstwa dla ${member}`)
+
+                logsChannel.send({
+                    content: `(LOG)`,
+                    embeds: [embed]
+                })
 
                 return interaction.reply({
                     embeds: [embed]
