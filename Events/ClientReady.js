@@ -10,7 +10,7 @@ client.on("ready", async () => {
         users = users + server.memberCount
     })
     let status = [
-        `${guilds.size} serwery`,
+        `${guilds.size} serwerów`,
         `${users} użytkowników`,
         `${client.channels.cache.filter(c => c.type === `GUILD_TEXT` || c.type === `GUILD_VOICE`).size} kanały`
     ]
