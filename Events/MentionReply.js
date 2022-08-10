@@ -8,6 +8,7 @@ let both = ["messageCreate", "messageUpdate"]
 
 both.forEach(event => {
     client.on(event, async (message, newMessage) => {
+        if(message.author.bot) return
         newMessage = message
         if(!message.mentions.users.has(client.user.id)) return
         let totalSeconds = (client.uptime / 1000);
