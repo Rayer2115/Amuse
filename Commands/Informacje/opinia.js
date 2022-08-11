@@ -22,7 +22,7 @@ module.exports = {
 
         let stars = interaction.options.getNumber(`gwiazdki`)
         let comment = interaction.options.getString(`opinia`)
-        let channel = client.channels.fetch(`1007328834011537448`)
+        let channel = client.channels.cache.get(`1007328834011537448`)
 
         if(stars < 1 || stars > 5){
             let errEmbed = new Discord.MessageEmbed()
