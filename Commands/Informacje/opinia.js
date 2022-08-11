@@ -61,6 +61,9 @@ module.exports = {
             embeds: [embed]
         })
 
-        interaction.reply(`Twoja opinia została wysłana!`)
+        interaction.reply({
+            content: `Twoja opinia została wysłana`,
+            ephemeral: true
+        })
     }
 }
