@@ -36,7 +36,7 @@ module.exports = {
         }
 
         let embed = new Discord.MessageEmbed()
-        .setAuthor({text: `Opinia ${interaction.user.tag}`, iconURL: interaction.user.avatarURL({dynamic: true})})
+        .setAuthor({name: `Opinia ${interaction.user.tag}`, iconURL: interaction.user.avatarURL({dynamic: true})})
         
         if(stars === 1){
             embed.setDescription(`<:star:1007332270299942932>`)
