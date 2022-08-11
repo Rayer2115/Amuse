@@ -24,7 +24,7 @@ module.exports = {
         let comment = interaction.options.getString(`opinia`)
         let channel = client.channels.fetch(`1007328834011537448`)
 
-        if(stars > 1 || stars < 5){
+        if(stars < 1 || stars > 5){
             let errEmbed = new Discord.MessageEmbed()
             .setTitle(`Wystąpił błąd...`)
             .setColor(client.config.primary)
