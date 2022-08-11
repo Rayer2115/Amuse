@@ -37,6 +37,7 @@ module.exports = {
 
         let embed = new Discord.MessageEmbed()
         .setAuthor({name: `Opinia ${interaction.user.tag}`, iconURL: interaction.user.avatarURL({dynamic: true})})
+        .setColor(client.config.primary)
         
         if(stars === 1){
             embed.setDescription(`<:star:1007332270299942932>`)
@@ -59,5 +60,7 @@ module.exports = {
         channel.send({
             embeds: [embed]
         })
+
+        interaction.reply(`Twoja opinia została wysłana!`)
     }
 }
